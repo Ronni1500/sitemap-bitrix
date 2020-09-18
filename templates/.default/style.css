@@ -1,0 +1,22 @@
+.site-map {
+}
+
+.site-map .depth-2 {
+	margin-left: 40px;
+}
+
+.site-map .depth-3 {
+	margin-left: 60px;
+}
+
+.site-map .depth-4 {
+	margin-left: 70px;
+}
+
+.site-map .depth-5 {
+	margin-left: 80px;
+}
+
+.site-map .depth-6 {
+	margin-left: 90px;
+}
