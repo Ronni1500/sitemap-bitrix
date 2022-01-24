@@ -8,6 +8,7 @@
 		'Menu' => '/local/components/utlab/sitemap/lib/classMenu.php',
 		'IBl' => '/local/components/utlab/sitemap/lib/classIblock.php',
 		'Seo' => '/local/components/utlab/sitemap/lib/Seo/classSeo.php',
+		'StaticPage' => '/local/components/utlab/sitemap/lib/classStatic.php',
 		'NoIndex' => '/local/components/utlab/sitemap/lib/Seo/classNoIndex.php',
     	'Redirect' => '/local/components/utlab/sitemap/lib/Seo/classRedirect.php',
 		'Xml' => '/local/components/utlab/sitemap/lib/xml/classXml.php',
@@ -42,6 +43,15 @@
 					$ibl->getSections($this->arParams['IB_LIST'])
 				);
 			}
+			
+			// статические страницы только для карты xml
+		    if($this->arParams['STATIC'] && $this->arParams['XML'] == 'Y'){
+			$static = new StaticPage($this->arParams);
+			$this->arResult['ITEMS'] = array_merge(
+			    $this->arResult['ITEMS'],
+			    $static->getResult($this->arParams['STATIC'])
+			);
+		    }
 			
 			if($this->arParams['XML_FILE'] == 'Y'){// для задачи на cron, генерации простого файла и с разбиением на подфайлы
 				if(!empty($this->arParams['LIMIT']) && $this->arParams['LIMIT'] > 0){// превышение лимита, несколько фалов
